@@ -7,7 +7,7 @@ $.getJSON(jsonURL, function(sushidata){
             const item = place.sushi[i];
             var sushiCard = `<div class="col-3 my-3">
                                 <div class="card">
-                                    <img src="assets/sushi/${place.company}/${i}.jpg" class="card-img-top" alt="">
+                                    <img src="assets/sushi/${place.company}/${i}.jpg" class="card-img-top" alt="" style="height: 230px;">
                                     <div class="card-body">
                                         <h4 class="card-title">${item.name}</h5>
                                         <p class="card-text">${item.desc}</p>
