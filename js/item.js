@@ -8,7 +8,7 @@ if(window.location.search){
     item = Number(urlParams.get('item'));
     console.log(`item: ${item}`);
 } else { 
-    goToRandom();
+    window.open(`?item=`+random(15),"_self");
 }
 
 $.getJSON(sushiJSON, function(sushidata){
@@ -16,11 +16,14 @@ $.getJSON(sushiJSON, function(sushidata){
     $.getJSON(companyJSON, function(compdata){
         data.company = compdata[data.company];
         console.log(data);
+        const addressIndex = random(data.company.address.length)
         
         $("main h1").text(data.name);
-        $("main h5 span").text(data.amount);
+        $("main #amount span").text(data.amount);
         $("main p span").text(data.desc);
         $("main h3 span").text(data.price);
+        $("main #address span").text(data.company.address[addressIndex]);
+        $("main #company span").text(data.company.name);
         
         $("main img").attr("src", `./assets/sushi/${item}.jpg`);
     });
@@ -30,7 +33,6 @@ $.getJSON(sushiJSON, function(sushidata){
 
 
 
-function goToRandom(){
-    var num = Math.floor(Math.random()*15);
-    window.open(`?item=${num}`,"_self");
+function random(num){
+    return Math.floor(Math.random()*num);
 }
