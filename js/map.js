@@ -1,21 +1,24 @@
 function initMap() {
     var startAddress = "Kabanbay Batyr St 320, Almaty";
-    var endAddress = "Bts \"Bayzak\" Abay Ave 52в, Almaty";
+    var endPlaceId = "ChIJlz_e9C1pgzgRv13TMlOvICs";
   
     var geocoder = new google.maps.Geocoder();
   geocoder.geocode({address: startAddress}, function(results, status) {
     if (status === 'OK') {
       var startPoint = results[0].geometry.location;
-      geocoder.geocode({address: endAddress}, function(results, status) {
-        if (status === 'OK') {
-          var endPoint = results[0].geometry.location;
-          var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 10,
-            center: startPoint,
-            mapTypeControl: false,
-            streetViewControl: false,
-            fullscreenControl: false,
-          });
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: startPoint,
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+      });
+      var service = new google.maps.places.PlacesService(map);
+      service.getDetails({
+        placeId: endPlaceId
+      }, function(place, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          var endPoint = place.geometry.location;
 
           var startMarker = new google.maps.Marker({
             position: startPoint,
