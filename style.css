@@ -10,33 +10,35 @@
     width: 30%;
 }
  #products {
-        display: inline-block;
-        padding: 30px;
-    }
-    a {
+    display: inline-block;
+    padding: 30px;
+}
+a {
     text-decoration: none;
     color: black;
-    }
-    a:hover {
+}
+a:hover {
     text-decoration: none;
     color: black;
-    }
+}
 #desc {
-        float: right;
-        margin-top: 100px;
-        display: inline-block;
-        background-color: rgb(251, 251, 254);
-        border-radius: 25px;
-        border: solid;
-        border-width: 1px; border-color: rgb(219, 222, 235);
-    }
-    #desc2 {
-        border-radius: 25px;
-        border: solid;
-        border-width: 1px; border-color: rgb(219, 222, 235);
-        background-color: rgb(251, 251, 254);
-    }
-    #desc_color {
-        border: solid;
-        border-top: none; border-right: none; border-left: none; border-width: 1px; border-color: rgb(219, 222, 235);
-    }
+    float: right;
+    margin-top: 100px;
+    display: inline-block;
+    background-color: rgb(251, 251, 254);
+    border-radius: 25px;
+    border: solid;
+    border-width: 1px; 
+    border-color: rgb(219, 222, 235);
+}
+#desc2 {
+    border-radius: 25px;
+    border: solid;
+    border-width: 1px; border-color: rgb(219, 222, 235);
+    background-color: rgb(251, 251, 254);
+}
+#desc_color {
+    border: none; border-bottom: solid;
+    border-width: 1px; 
+    border-color: rgb(219, 222, 235);
+}

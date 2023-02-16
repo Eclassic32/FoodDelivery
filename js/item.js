@@ -1,34 +1,34 @@
-const jsonURL = "https://raw.githubusercontent.com/Eclassic32/FoodDelivery/master/js/sushi.json";
+const sushiJSON = "https://raw.githubusercontent.com/Eclassic32/FoodDelivery/master/js/sushi.json";
+const companyJSON = "https://raw.githubusercontent.com/Eclassic32/FoodDelivery/master/js/company.json";
 var data = {};
+var item;
 
 if(window.location.search){
     const urlParams = new URLSearchParams(window.location.search);
     item = Number(urlParams.get('item'));
-    comp = String(urlParams.get('comp'));
-    console.log(`item: ${gameId} \t company: ${comp}`);
+    console.log(`item: ${item}`);
 } else { 
-    goToBasic();
+    goToRandom();
 }
 
-$.getJSON(jsonURL, function(sushidata){
-    for (let i = 0; i < sushidata.length; i++) {
-        if (comp == sushidata[i].company){
-            try {
-                data = sushidata[i].sushi[item];
-            } catch (error) {
-                console.log(error);
-                goToBasic();
-            }
-            
-        }
-        
-    }
-
-
-    
-    
+$.getJSON(sushiJSON, function(sushidata){
+    data = sushidata[item];
+});
+$.getJSON(companyJSON, function(compdata){
+    data.company = compdata[data.company];
 });
 
-function goToBasic(){
-    window.open(`?item=0&comp=pakipaki`,"_self");
+$("main h1").text(data.name);
+$("main h5 span").text(data.amount);
+$("main p span").text(data.desc);
+$("main h3 span").text(data.price);
+
+$("main img").attr("src", `./assets/sushi/${item}.jpg`);
+
+
+
+
+function goToRandom(){
+    var num = Math.floor(Math.random()*15);
+    window.open(`?item=${num}`,"_self");
 }
