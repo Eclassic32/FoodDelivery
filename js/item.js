@@ -75,7 +75,10 @@ $("#buybtn").click(function(event){
             else cookie = JSON.parse(cookie);
             cookie.push(order);
             setCookie("order", JSON.stringify(cookie), 1);
-            console.log("order");
+            console.log(JSON.parse(getCookie("order")));
+            
+            window.open(`order.html?id=`+orderId,"_self");
+
 
         }).catch(function(err){
             console.error('Error: ', err);
@@ -142,10 +145,6 @@ function getCookie(cname) {
     }
     return "";
   }
-
-function resetCookie(){
-    setCookie("order", "[]", 1);
-}
 
 function random(num){
     return Math.floor(Math.random()*num);
