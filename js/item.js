@@ -1,7 +1,7 @@
 const sushiJSON = "https://raw.githubusercontent.com/Eclassic32/FoodDelivery/master/js/sushi.json";
 const companyJSON = "https://raw.githubusercontent.com/Eclassic32/FoodDelivery/master/js/company.json";
-var data = {};
-var item;
+let data = {};
+let item;
 
 if(window.location.search){
     const urlParams = new URLSearchParams(window.location.search);
@@ -13,17 +13,19 @@ if(window.location.search){
 
 $.getJSON(sushiJSON, function(sushidata){
     data = sushidata[item];
-});
-$.getJSON(companyJSON, function(compdata){
-    data.company = compdata[data.company];
+    $.getJSON(companyJSON, function(compdata){
+        data.company = compdata[data.company];
+        console.log(data);
+        
+        $("main h1").text(data.name);
+        $("main h5 span").text(data.amount);
+        $("main p span").text(data.desc);
+        $("main h3 span").text(data.price);
+        
+        $("main img").attr("src", `./assets/sushi/${item}.jpg`);
+    });
 });
 
-$("main h1").text(data.name);
-$("main h5 span").text(data.amount);
-$("main p span").text(data.desc);
-$("main h3 span").text(data.price);
-
-$("main img").attr("src", `./assets/sushi/${item}.jpg`);
 
 
 

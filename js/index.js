@@ -2,7 +2,8 @@ const sushiJSON = "https://raw.githubusercontent.com/Eclassic32/FoodDelivery/mas
 
 $.getJSON(sushiJSON, function(sushidata){
     console.log(sushidata)
-    sushidata.forEach(item => {
+    for (let i = 0; i < sushidata.length; i++) {
+        const item = sushidata[i];
         var sushiCard = `<div class="col-3 my-3">
                             <div class="card">
                                 <img src="assets/sushi/${i}.jpg" class="card-img-top" alt="" style="height: 230px;">
@@ -16,5 +17,5 @@ $.getJSON(sushiJSON, function(sushidata){
                             </div>
                         </div>`;
         $('#allSushi').append(sushiCard);
-    });
+    };
 });
