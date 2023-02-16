@@ -8,10 +8,10 @@
             "Рихарда Зорге, 5"
         ],
         "map":[
-            "",
-            "",
-            "",
-            ""
+            "Lebedev St 2, Almaty",
+            "Tole Bi Street 50, Almaty",
+            "Markov St 36, Almaty",
+            "Richard Sorge St 5, Almaty"
         ]
     },
     {
@@ -23,10 +23,10 @@
             "ул. Шолохова, уг. Рихарда Зорге"
         ],
         "map":[
-            "",
-            "",
-            "",
-            ""
+            "Zhandosov Street 57, Almaty",
+            "Zharokov St 286, Almaty",
+            "Zholdasbekov St 9, Almaty",
+            "Richard Sorge St, Almaty"
         ]
     },
     {
@@ -37,9 +37,9 @@
             "пр. Абылай Хана, 94, уг. ул. Кабанбай Батыра"
         ],
         "map":[
-            "",
-            "",
-            ""
+            "Gogolya 201, Gogol St, Almaty",
+            "Mangs Sushi, 78, Baytursynova St уг, Almaty",
+            "Abylai Khan Ave 94, Almaty"
         ]
     }
 ]
