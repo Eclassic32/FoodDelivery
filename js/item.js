@@ -74,7 +74,7 @@ $("#buybtn").click(function(event){
             if(cookie == '') cookie = [];
             else cookie = JSON.parse(cookie);
             cookie.push(order);
-            setCookie("order", cookie, 1);
+            setCookie("order", JSON.stringify(cookie), 1);
             console.log("order");
 
         }).catch(function(err){
