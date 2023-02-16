@@ -56,13 +56,26 @@ $.getJSON(sushiJSON, function(sushidata){
 
 $("#buybtn").click(function(event){
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(buyItem, showError);
+        navigator.geolocation.getCurrentPosition(buyItem, locationError);
     } else {
         $("#error").text("Geolocation is not supported by this browser.");
     }
     event.preventDefault();
+    
+    function buyItem(position){
+        getPlaceIdFromCoords(position)
+        .then(async function (placeId){
+            // console.log('Place ID:', placeId);
+            const orderId = random(9000) + 1000;
+            var order = {"place": placeId, "id": orderId, "item": item};
+            console.log(order);
 
-    function showError(error) {
+        }).catch(function(err){
+            console.error('Error: ', err);
+        });
+    }
+    
+    function locationError(error) {
         switch(error.code) {
           case error.PERMISSION_DENIED:
             $("#error").text("User denied the request for Geolocation.");
@@ -77,20 +90,6 @@ $("#buybtn").click(function(event){
             $("#error").text("An unknown error occurred.");
             break;
         }
-    }
-    function showPosition(position) {
-        console.log(position)
-        x.innerHTML = "Latitude: " + position.coords.latitude + 
-        "<br>Longitude: " + position.coords.longitude;
-    }
-
-    function buyItem(position){
-        getPlaceIdFromCoords(position)
-        .then(function (placeId){
-            console.log('Place ID:', placeId);
-        }).catch(function(err){
-            console.error('Error: ', err);
-        });
     }
 
     function getPlaceIdFromCoords(position) {
