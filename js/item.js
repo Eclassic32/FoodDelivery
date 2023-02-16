@@ -26,7 +26,7 @@ $.getJSON(sushiJSON, function(sushidata){
         $("main #company span").text(data.company.name);
         
         $("main img").attr("src", `./assets/sushi/${item}.jpg`);
-
+        
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({address: data.company.map[addressIndex]}, function(results, status) {
             if (status === 'OK') {
@@ -54,8 +54,65 @@ $.getJSON(sushiJSON, function(sushidata){
     });
 });
 
+$("#buybtn").click(function(event){
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(buyItem, showError);
+    } else {
+        $("#error").text("Geolocation is not supported by this browser.");
+    }
+    event.preventDefault();
 
+    function showError(error) {
+        switch(error.code) {
+          case error.PERMISSION_DENIED:
+            $("#error").text("User denied the request for Geolocation.");
+            break;
+          case error.POSITION_UNAVAILABLE:
+            $("#error").text("Location information is unavailable.");
+            break;
+          case error.TIMEOUT:
+            $("#error").text("The request to get user location timed out.");
+            break;
+          case error.UNKNOWN_ERROR:
+            $("#error").text("An unknown error occurred.");
+            break;
+        }
+    }
+    function showPosition(position) {
+        console.log(position)
+        x.innerHTML = "Latitude: " + position.coords.latitude + 
+        "<br>Longitude: " + position.coords.longitude;
+    }
 
+    function buyItem(position){
+        getPlaceIdFromCoords(position)
+        .then(function (placeId){
+            console.log('Place ID:', placeId);
+        }).catch(function(err){
+            console.error('Error: ', err);
+        });
+    }
+
+    function getPlaceIdFromCoords(position) {
+        var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        var geocoder = new google.maps.Geocoder();
+      
+        return new Promise(function(resolve, reject) {
+          geocoder.geocode({ 'location': latLng }, function(results, status) {
+            if (status === 'OK') {
+              if (results[0]) {
+                resolve(results[0].place_id);
+              } else {
+                reject('No results found');
+              }
+            } else {
+              reject('Geocoder failed due to: ' + status);
+            }
+          });
+        });
+      }
+      
+});
 
 
 function random(num){
