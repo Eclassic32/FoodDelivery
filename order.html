@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="style.css">
 	<title>Food Delivery</title>
 </head>
-<body class="">
+<body class="" onload="initMap()">
 	<div id="topbar" class="bg-info">
 		<div class=" navbar container">
 			<a class="navbar-brand" href="index.html">Food Delivery</a>
@@ -19,10 +19,30 @@
 	</div>
 
 	<main class="container my-4">
-        
+        <div class="row">
+        	<div class="col-5">
+        		<div class="card">
+					<div class="card-header">
+						Заказ номер: 748
+					</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">Товар: Калифорния</li>
+						<li class="list-group-item">Компания: Pikapika</li>
+						<li class="list-group-item">Адрес: Толе Би, 50/54</li>
+						<li class="list-group-item">Время: 18 минут</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-6"><div id="map" style="height: 500px; width: 100%;"></div></div>
+		</div>
 	</main>
 
 	<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 	<script src="./js/order.js"></script>
+	<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5EFmXSwJxQS40ziJxK_shBAiWREJnqBU">
+    </script>
+    <script src="js/map.js"></script>
+    <script src="js/maptheme.js"></script>
 </body>
 </html>
