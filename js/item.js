@@ -26,6 +26,31 @@ $.getJSON(sushiJSON, function(sushidata){
         $("main #company span").text(data.company.name);
         
         $("main img").attr("src", `./assets/sushi/${item}.jpg`);
+
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({address: data.company.map[addressIndex]}, function(results, status) {
+            if (status === 'OK') {
+              var coorComp = results[0].geometry.location;
+              var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 16,
+                center: coorComp,
+                mapTypeControl: false,
+                streetViewControl: false,
+                fullscreenControl: false,
+              });
+    
+              var startMarker = new google.maps.Marker({
+                position: coorComp,
+                map: map,
+                label: {
+                  text: "\ue57a",
+                  fontFamily: "Material Icons",
+                  color: "#ffffff",
+                  fontSize: "16px",
+                },
+              });
+            }
+        });
     });
 });
 

@@ -15,7 +15,6 @@ function initMap() {
             mapTypeControl: false,
             streetViewControl: false,
             fullscreenControl: false,
-            styles: mapTheme.night
           });
 
           var startMarker = new google.maps.Marker({
