@@ -70,7 +70,9 @@ $("#buybtn").click(function(event){
             var order = {"place": placeId, "id": orderId, "item": item};
             console.log(order);
 
-            var cookie = JSON.parse(getCookie("order"));
+            var cookie = getCookie("order");
+            if(cookie == '') cookie = [];
+            else cookie = JSON.parse(cookie);
             cookie.push(order);
             setCookie("order", cookie, 1)
 
