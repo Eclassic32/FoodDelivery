@@ -1,4 +1,4 @@
-const jsonURL = "https://raw.githubusercontent.com/Eclassic32/FoodDelivery/master/js/sushi.json";
+const sushiJSON = "https://raw.githubusercontent.com/Eclassic32/FoodDelivery/master/js/sushi.json";
 
 $.getJSON(sushiJSON, function(sushidata){
     console.log(sushidata)
