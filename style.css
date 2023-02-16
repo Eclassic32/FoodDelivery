@@ -22,8 +22,6 @@ a:hover {
     color: black;
 }
 #desc {
-    float: right;
-    margin-top: 100px;
     display: inline-block;
     background-color: rgb(251, 251, 254);
     border-radius: 25px;
