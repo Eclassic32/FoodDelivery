@@ -67,7 +67,7 @@ function getOrder(cookie, id){
         cookie = JSON.parse(cookie);
         for (let i = 0; i < cookie.length; i++) {
             const el = cookie[i];
-            if (el.id = id){
+            if (el.id == id){
                 return el;
             }
         }
