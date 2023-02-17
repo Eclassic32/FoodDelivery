@@ -2,6 +2,7 @@ const sushiJSON = "https://raw.githubusercontent.com/Eclassic32/FoodDelivery/mas
 const companyJSON = "https://raw.githubusercontent.com/Eclassic32/FoodDelivery/master/js/company.json";
 let data = {};
 let item;
+const orderId = random(9000) + 1000;
 const addressIndex = random(3)
 
 if(window.location.search){
@@ -26,6 +27,7 @@ $.getJSON(sushiJSON, function(sushidata){
         $("main #company span").text(data.company.name);
         
         $("main img").attr("src", `./assets/sushi/${item}.jpg`);
+        $("main a").attr("href", `order.html?id=` + orderId);
         
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({address: data.company.map[addressIndex]}, function(results, status) {
@@ -55,7 +57,6 @@ $.getJSON(sushiJSON, function(sushidata){
 });
 
 $("#buybtn").click(async function(event){
-  const orderId = random(9000) + 1000;
     if (navigator.geolocation) {
       await navigator.geolocation.getCurrentPosition(buyItem, locationError);
       await window.open(`order.html?id=` + orderId,"_self");
