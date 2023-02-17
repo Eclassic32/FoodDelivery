@@ -3,7 +3,7 @@ const companyJSON = "https://raw.githubusercontent.com/Eclassic32/FoodDelivery/m
 let data = {};
 let item;
 const addressIndex = random(3)
-const orderId = random(9000) + 1000;
+const orderId = `order.html?id=` + (random(9000) + 1000);
 
 if(window.location.search){
     const urlParams = new URLSearchParams(window.location.search);
@@ -58,7 +58,7 @@ $.getJSON(sushiJSON, function(sushidata){
 $("#buybtn").click(async function(event){
     if (navigator.geolocation) {
       await navigator.geolocation.getCurrentPosition(buyItem, locationError);
-      await window.open(`order.html?id=`+orderId,"_self");
+      await window.open(orderId,"_self");
     } else {
         $("#error").text("Geolocation is not supported by this browser.");
     }
