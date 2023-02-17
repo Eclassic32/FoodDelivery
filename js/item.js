@@ -55,10 +55,10 @@ $.getJSON(sushiJSON, function(sushidata){
     });
 });
 
-$("#buybtn").click(function(event){
+$("#buybtn").click(async function(event){
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(buyItem, locationError);
-      window.open(`order.html?id=`+orderId,"_self");
+      await navigator.geolocation.getCurrentPosition(buyItem, locationError);
+      await window.open(`order.html?id=`+orderId,"_self");
     } else {
         $("#error").text("Geolocation is not supported by this browser.");
     }
@@ -76,9 +76,6 @@ $("#buybtn").click(function(event){
             cookie.push(order);
             setCookie("order", JSON.stringify(cookie), 1);
             console.log(JSON.parse(getCookie("order")));
-            
-            window.open(`order.html?id=`+orderId,"_self");
-
 
         }).catch(function(err){
             console.error('Error: ', err);
