@@ -59,7 +59,9 @@ $.getJSON(sushiJSON, function(sushidata){
 $("#buybtn").click(async function(event){
     if (navigator.geolocation) {
       await navigator.geolocation.getCurrentPosition(buyItem, locationError);
-      // await window.open(`order.html?id=` + orderId,"_self");
+      setTimeout(() => {
+        window.open(`order.html?id=` + orderId,"_self");
+      }, 2000);
     } else {
         $("#error").text("Geolocation is not supported by this browser.");
     }
