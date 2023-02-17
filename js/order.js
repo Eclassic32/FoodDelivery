@@ -31,11 +31,11 @@ if (cookie != '' && getOrder(cookie, id) != false) {
             $("#company").text(company.name);
             $("#from").text(company.address[data.address]);
 
-            var dirData = await getDirections(company.map[data.address], data.place);
-            await console.log(dirData);
+            // var dirData = await getDirections(company.map[data.address], data.place);
+            // await console.log(dirData);
 
-            await $("#to").text(dirData.routes[0].legs[0].end_address);
-            await $("#time").text(dirData.routes[0].legs[0].duration.text);
+            // await $("#to").text(dirData.routes[0].legs[0].end_address);
+            // await $("#time").text(dirData.routes[0].legs[0].duration.text);
         });
         
     });
@@ -45,21 +45,21 @@ if (cookie != '' && getOrder(cookie, id) != false) {
 
 }
 
-async function getDirections(startAddress, endPlaceId) {
-    const language = "ru";
+// async function getDirections(startAddress, endPlaceId) {
+//     const language = "ru";
 
-    const apiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${encodeURIComponent(startAddress)}&destination=place_id:${encodeURIComponent(endPlaceId)}&language=${language}&key=AIzaSyA5EFmXSwJxQS40ziJxK_shBAiWREJnqBU`;
-
-    try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-        console.log(data);
-        return data;
-    } catch (error) {
-        console.error("Error fetching directions data:", error);
-        return null;
-    }
-  }
+//     const apiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${encodeURIComponent(startAddress)}&destination=place_id:${encodeURIComponent(endPlaceId)}&language=${language}&key=AIzaSyA5EFmXSwJxQS40ziJxK_shBAiWREJnqBU`;
+//     const proxyUrl = "https://cors-anywhere.herokuapp.com/" + apiUrl;
+//     try {
+//         const response = await fetch(proxyUrl);
+//         const data = await response.json();
+//         console.log(data);
+//         return data;
+//     } catch (error) {
+//         console.error("Error fetching directions data:", error);
+//         return null;
+//     }
+//   }
   
 
 function getOrder(cookie, id){
