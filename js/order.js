@@ -12,21 +12,55 @@ if(window.location.search){
 }
 
 // var cookie = getCookie("order");
-var cookie = '[{"place": "ChIJz4TXtUJpgzgR4Fn4lkRG2YI", "id": 1234, "item": 7},{"place":"ChIJz4TXtUJpgzgR4Fn4lkRG2YI","id":2058,"item":3}]'
+var cookie = '[{"place": "ChIJz4TXtUJpgzgR4Fn4lkRG2YI", "id": 1234, "item": 7, "address": 2},{"place":"ChIJz4TXtUJpgzgR4Fn4lkRG2YI","id":2058,"item":3, "address": 1}]'
 if (cookie != '' && getOrder(cookie, id) != false) {
     data = getOrder(cookie, id);
     console.log(data);
     
     $.getJSON(sushiJSON, function(sushidata){
-        $("#id").text(sushidata[data.item].name);
-    });
+        const sushi = sushidata[data.item];
+        $.getJSON(companyJSON, async function(compdata){
+            const company = compdata[sushi.company];
+            console.log(sushi);
+            console.log(company);
 
-    $.getJSON(companyJSON, function(compdata){
+            await initMap(company.map[data.address], data.place);
 
+            $("#id").text(id);
+            $("#item").text(sushi.name);
+            $("#company").text(company.name);
+            $("#from").text(company.address[data.address]);
+
+            var dirData = await getDirections(company.map[data.address], data.place);
+            await console.log(dirData);
+
+            await $("#to").text(dirData.routes[0].legs[0].end_address);
+            await $("#time").text(dirData.routes[0].legs[0].duration.text);
+        });
+        
     });
+    
+    
 } else {   
 
 }
+
+async function getDirections(startAddress, endPlaceId) {
+    const language = "ru";
+
+    const apiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${encodeURIComponent(startAddress)}&destination=place_id:${encodeURIComponent(endPlaceId)}&language=${language}&key=AIzaSyA5EFmXSwJxQS40ziJxK_shBAiWREJnqBU`;
+
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.error("Error fetching directions data:", error);
+        return null;
+    }
+  }
+  
 
 function getOrder(cookie, id){
     try {
@@ -60,3 +94,4 @@ function getCookie(cname) {
     }
     return "";
 }
+
