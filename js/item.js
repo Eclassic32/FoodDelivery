@@ -27,7 +27,6 @@ $.getJSON(sushiJSON, function(sushidata){
         $("main #company span").text(data.company.name);
         
         $("main img").attr("src", `./assets/sushi/${item}.jpg`);
-        $("main a").attr("href", `order.html?id=`+orderId);
         
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({address: data.company.map[addressIndex]}, function(results, status) {
