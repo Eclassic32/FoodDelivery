@@ -42,7 +42,7 @@ if (cookie != '' && getOrder(cookie, id) != false) {
     
     
 } else {   
-
+    window.open('index.html',"_self");
 }
 
 // async function getDirections(startAddress, endPlaceId) {
