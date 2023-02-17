@@ -72,11 +72,13 @@ $("#buybtn").click(async function(event){
             console.log(order);
 
             var cookie = getCookie("order");
-            if(cookie == '') cookie = [];
-            else cookie = JSON.parse(cookie);
+            if(cookie == '') {
+              cookie = '[]';
+            }
+            cookie = JSON.parse(cookie);
             cookie.push(order);
+            console.log(cookie);
             setCookie("order", JSON.stringify(cookie), 1);
-            console.log(JSON.parse(getCookie("order")));
 
         }).catch(function(err){
             console.error('Error: ', err);
