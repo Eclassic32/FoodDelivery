@@ -11,8 +11,8 @@ if(window.location.search){
     // window.open('index.html',"_self");
 }
 
-// var cookie = getCookie("order");
-var cookie = '[{"place": "ChIJz4TXtUJpgzgR4Fn4lkRG2YI", "id": 1234, "item": 7, "address": 2},{"place":"ChIJz4TXtUJpgzgR4Fn4lkRG2YI","id":2058,"item":3, "address": 1}]'
+var cookie = getCookie("order");
+// var cookie = '[{"place": "ChIJz4TXtUJpgzgR4Fn4lkRG2YI", "id": 1234, "item": 7, "address": 2},{"place":"ChIJz4TXtUJpgzgR4Fn4lkRG2YI","id":2058,"item":3, "address": 1}]'
 if (cookie != '' && getOrder(cookie, id) != false) {
     data = getOrder(cookie, id);
     console.log(data);
