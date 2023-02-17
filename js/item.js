@@ -55,10 +55,10 @@ $.getJSON(sushiJSON, function(sushidata){
 });
 
 $("#buybtn").click(async function(event){
+  const orderId = random(9000) + 1000;
     if (navigator.geolocation) {
-      const orderId = `order.html?id=` + (random(9000) + 1000);
       await navigator.geolocation.getCurrentPosition(buyItem, locationError);
-      await window.open(orderId,"_self");
+      await window.open(`order.html?id=` + orderId,"_self");
     } else {
         $("#error").text("Geolocation is not supported by this browser.");
     }
