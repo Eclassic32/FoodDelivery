@@ -1,6 +1,6 @@
-function initMap() {
-    var startAddress = "Kabanbay Batyr St 320, Almaty";
-    var endPlaceId = "ChIJlz_e9C1pgzgRv13TMlOvICs";
+function initMap(startA, endId) {
+    var startAddress =  (startA == undefined) ? "Kabanbay Batyr St 320, Almaty" : startA;
+    var endPlaceId = (endId == undefined) ? "ChIJlz_e9C1pgzgRv13TMlOvICs" : endId;
   
     var geocoder = new google.maps.Geocoder();
   geocoder.geocode({address: startAddress}, function(results, status) {

@@ -4,13 +4,11 @@
         "address":[
             "Лебедева, 2",
             "Толе Би, 50/54",
-            "Маркова, 36",
             "Рихарда Зорге, 5"
         ],
         "map":[
             "Lebedev St 2, Almaty",
             "Tole Bi Street 50, Almaty",
-            "Markov St 36, Almaty",
             "Richard Sorge St 5, Almaty"
         ]
     },
@@ -18,13 +16,11 @@
         "name": "Samurai-Sushi",
         "address":[
             "мк-р 10, ул. Жандосова 57, уг. Берегового",
-            "мк-р Алмагуль 18а, ул. Жарокова, уг. Дунаевского",
             "пр. Достык 91/1, уг. Жолдасбекова",
             "ул. Шолохова, уг. Рихарда Зорге"
         ],
         "map":[
             "Zhandosov Street 57, Almaty",
-            "Zharokov St 286, Almaty",
             "Zholdasbekov St 9, Almaty",
             "Richard Sorge St, Almaty"
         ]

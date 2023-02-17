@@ -2,6 +2,7 @@ const sushiJSON = "https://raw.githubusercontent.com/Eclassic32/FoodDelivery/mas
 const companyJSON = "https://raw.githubusercontent.com/Eclassic32/FoodDelivery/master/js/company.json";
 let data = {};
 let item;
+const addressIndex = random(3)
 
 if(window.location.search){
     const urlParams = new URLSearchParams(window.location.search);
@@ -16,7 +17,6 @@ $.getJSON(sushiJSON, function(sushidata){
     $.getJSON(companyJSON, function(compdata){
         data.company = compdata[data.company];
         console.log(data);
-        const addressIndex = random(data.company.address.length)
         
         $("main h1").text(data.name);
         $("main #amount span").text(data.amount);
@@ -56,7 +56,8 @@ $.getJSON(sushiJSON, function(sushidata){
 
 $("#buybtn").click(function(event){
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(buyItem, locationError);
+      navigator.geolocation.getCurrentPosition(buyItem, locationError);
+      window.open(`order.html?id=`+orderId,"_self");
     } else {
         $("#error").text("Geolocation is not supported by this browser.");
     }
@@ -67,7 +68,7 @@ $("#buybtn").click(function(event){
         .then(async function (placeId){
             // console.log('Place ID:', placeId);
             const orderId = random(9000) + 1000;
-            var order = {"place": placeId, "id": orderId, "item": item};
+            var order = {"place": placeId, "id": orderId, "item": item, "address": addressIndex};
             console.log(order);
 
             var cookie = getCookie("order");
@@ -77,7 +78,6 @@ $("#buybtn").click(function(event){
             setCookie("order", JSON.stringify(cookie), 1);
             console.log(JSON.parse(getCookie("order")));
             
-            window.open(`order.html?id=`+orderId,"_self");
 
 
         }).catch(function(err){
