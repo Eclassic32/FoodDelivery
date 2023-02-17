@@ -3,6 +3,7 @@ const companyJSON = "https://raw.githubusercontent.com/Eclassic32/FoodDelivery/m
 let data = {};
 let item;
 const addressIndex = random(3)
+const orderId = random(9000) + 1000;
 
 if(window.location.search){
     const urlParams = new URLSearchParams(window.location.search);
@@ -26,6 +27,7 @@ $.getJSON(sushiJSON, function(sushidata){
         $("main #company span").text(data.company.name);
         
         $("main img").attr("src", `./assets/sushi/${item}.jpg`);
+        $("main a").attr("href", `order.html?id=`+orderId);
         
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({address: data.company.map[addressIndex]}, function(results, status) {
@@ -61,13 +63,11 @@ $("#buybtn").click(function(event){
     } else {
         $("#error").text("Geolocation is not supported by this browser.");
     }
-    event.preventDefault();
     
     function buyItem(position){
         getPlaceIdFromCoords(position)
         .then(async function (placeId){
             // console.log('Place ID:', placeId);
-            const orderId = random(9000) + 1000;
             var order = {"place": placeId, "id": orderId, "item": item, "address": addressIndex};
             console.log(order);
 
@@ -78,6 +78,7 @@ $("#buybtn").click(function(event){
             setCookie("order", JSON.stringify(cookie), 1);
             console.log(JSON.parse(getCookie("order")));
             
+            window.open(`order.html?id=`+orderId,"_self");
 
 
         }).catch(function(err){
