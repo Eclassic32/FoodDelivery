@@ -8,7 +8,7 @@ if(window.location.search){
     id = Number(urlParams.get('id'));
     console.log(`id: ${id}`);
 } else { 
-    // window.open('index.html',"_self");
+    window.open('index.html',"_self");
 }
 
 var cookie = getCookie("order");
